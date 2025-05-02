@@ -1,26 +1,248 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --body-bg-color: #C0C0C0;
+    --shade-color: #808080;
+    --tab-bg-color: #fcfcfc;
+    --accent-color: #000080;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, :root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Jersey 10", serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--body-bg-color);
+    height: 100vh;
+    width: 100vw;
+
+    color: var(--tab-bg-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#taskmanager-container {
+    height: 60%;
+    width: 60%;
+    border: 8px double black;
+    background-color: var(--body-bg-color);
+}
+#signin-container {
+    height: 30%;
+    width: 20%;
+    border: 8px double black;
+    background-color: var(--body-bg-color);
+}
+
+
+.program-header {
+    width: 100%;
+    height: 2rem;
+
+    background-color: var(--accent-color);
+    outline: 3px solid black;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.double-button-container {
+    height: 100%;
+    display: flex;
+}
+
+.button {
+    height: 100%;
+    width: 2rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-style: solid;
+    border-width: 4px;
+    border-top-color: #FFFFFF;
+    border-left-color: #FFFFFF;
+    border-right-color: var(--shade-color);
+    border-bottom-color: var(--shade-color);
+    background-color: var(--body-bg-color);
+
+    outline: 3px solid black;
+    overflow: hidden;
+
+    cursor: pointer;
+}
+.double-button-container button:first-of-type{
+    transform: translateX(-3px);
+}
+.button:active {
+    border-top-color: var(--shade-color);
+    border-left-color: var(--shade-color);
+    border-right-color: #FFF;
+    border-bottom-color: #FFF;
+
+    color: var(--shade-color);
+}
+
+.minimize {
+    font-size: 1.4rem;
+}
+.minimize-content {
+    display: block;
+    transform: translateY(-9px);
+}
+
+
+.program-main {
+    width: 100%;
+    height: calc(100% - 2rem);
+    background-color: var(--tab-bg-color);
+
+    padding: 1.3rem 1rem 1rem 1rem;
+}
+
+.add {
+    height: 2rem;
+    max-width: 5%;
+    width: 3.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.signin {
+    height: 4rem;
+    min-width: 60%;
+    margin: 20%;
+    font-size: 1.55rem;
+    font-weight: 700;
+}
+
+.main-top-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-task-input {
+    height: 2rem;
+    width: 93%;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    padding-left: 0.5rem;
+
+    outline: 3px solid black;
+    border: none;
+}
+
+.task-container {
+    width: 100%;
+    height: calc(100% - 3rem);
+
+    display: flex;
+
+    margin-top: 1rem;
+    outline: 3px solid black;
+
+    color: black;
+}
+.task-container h1 {
+    height: 2rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 3px solid black;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.current-tasks-container {
+    width: 50%;
+    height: 100%;
+    border-right: 2px solid black;
+}
+.completed-tasks-container {
+    width: 50%;
+    height: 100%;
+    border-left: 2px solid black;
+    border-right: none !important;
+}
+
+.current-tasks, .completed-tasks {
+    height: calc(100% - 2rem);
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    padding: 1rem;
+}
+.current-tasks::-webkit-scrollbar, .completed-tasks::-webkit-scrollbar {
+    display: none;
+  }
+
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 1rem;
+}
+li {
+    width: 100%;
+    height: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.5rem;
+
+    border: 3px solid black;
+    padding: 0.5rem;
+}
+p {
+    text-decoration-thickness: 2px !important;
+}
+li button {
+    height: 2.5rem;
+    width: 1.8rem;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    border: none;
+    background-color: #ffffff00;
+    background-image: url('/Bin_Full95.webp');
+    background-position: top;
+    background-size: 1.6rem 1.8rem;
+    background-repeat: no-repeat;
+
+    font-size: 0.75rem;
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+.buttonContainer {
+    display: flex;
+    gap: 1rem;
+}
+.toggleButton {
+    height: 2.5rem;
+    background-position: 0% 10%;
+    background-image: url('/checkmark.png');
+    background-size: contain;
+}
+
+li button:hover {
+    background-color: #cacaca;
 }
