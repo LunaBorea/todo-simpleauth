@@ -43,4 +43,5 @@ next-env.d.ts
 .db/
 
 *.sqlite
+*.sql
 *.db
