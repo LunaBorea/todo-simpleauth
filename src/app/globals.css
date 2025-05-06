@@ -80,8 +80,8 @@ body {
 
     cursor: pointer;
 }
-.double-button-container button:first-of-type{
-    transform: translateX(-3px);
+.double-button-container button:first-of-type {
+    margin-right: 3px;
 }
 .button:active {
     border-top-color: var(--shade-color);
