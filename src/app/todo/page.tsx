@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import Task from './task'
 import NoEntry from './noentry'
 import { authClient } from '@/lib/auth-client'
-import { useRouter } from 'next/navigation'
 
 type Todo = {
   id: number
@@ -15,7 +14,6 @@ export default function Page() {
   const { data: session } = authClient.useSession()
   const [tasks, setTasks] = useState<Todo[]>([])
   const [newTaskText, setNewTaskText] = useState("")
-  const router = useRouter()
 
   useEffect(() => { // GETs all tasks
     if (session?.user) {
@@ -31,7 +29,7 @@ export default function Page() {
   
   if (!session?.user) {
     return (
-      <NoEntry router={router}></NoEntry>
+      <NoEntry />
     )
   }
 
