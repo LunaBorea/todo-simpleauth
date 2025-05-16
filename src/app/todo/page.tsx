@@ -1,7 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Task from './task'
+import NoEntry from './noentry'
 import { authClient } from '@/lib/auth-client'
+import { useRouter } from 'next/navigation'
 
 type Todo = {
   id: number
@@ -13,8 +15,9 @@ export default function Page() {
   const { data: session } = authClient.useSession()
   const [tasks, setTasks] = useState<Todo[]>([])
   const [newTaskText, setNewTaskText] = useState("")
+  const router = useRouter()
 
-  useEffect(() => {
+  useEffect(() => { // GETs all tasks
     if (session?.user) {
       fetch('/api/todo')
         .then(res => res.json())
@@ -22,11 +25,18 @@ export default function Page() {
     }
   }, [session])
 
-  if (!session) return <div>Loading...</div>
-  if (!session.user) return <div>You must be logged in to view this page.</div>
+  if (session === undefined) {
+    return <div>Loading...</div>
+  }
+  
+  if (!session?.user) {
+    return (
+      <NoEntry router={router}></NoEntry>
+    )
+  }
 
   const addTask = async () => {
-    if (!newTaskText.trim()) return
+    if (!newTaskText.trim()) return // If no text, skip
     const res = await fetch('/api/todo', {
       method: 'POST',
       body: JSON.stringify({ content: newTaskText }),
@@ -34,7 +44,7 @@ export default function Page() {
     })
     const result = await res.json()
     setTasks(prev => [...prev, { id: result.lastInsertRowid, content: newTaskText, is_done: false }])
-    setNewTaskText("")
+    setNewTaskText("") // Removes text from input field
   }
 
   const removeTask = async (id: number) => {

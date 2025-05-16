@@ -57,6 +57,10 @@ body {
     font-size: 1.5vw;
 }
 
+.fix {
+    font-size: 1.15vw !important;
+}
+
 .double-button-container {
     height: 100%;
     display: flex;
@@ -130,6 +134,15 @@ body {
 .main-top-container {
     display: flex;
     justify-content: space-between;
+}
+.main-top-container-signin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.main-top-container-signin h1 {
+    color: black;
+    margin-bottom: -2rem;
 }
 
 .new-task-input {

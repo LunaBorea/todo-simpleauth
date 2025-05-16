@@ -20,8 +20,7 @@ export default function Task({ id, description, isDone, removeFunc, toggleFunc }
           onClick={() => toggleFunc(id, isDone)}
           style={{
             backgroundImage: `url(${isDone ? '/cross.png' : '/checkmark.png'})`
-          }}
-        >
+          }}>
           {isDone ? 'Unfinish' : 'Finish'}
         </button>
       </div>

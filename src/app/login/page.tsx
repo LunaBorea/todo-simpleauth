@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 export default function page() {
   const { data: session} = authClient.useSession()
 
-  useEffect(() => {
+  useEffect(() => { // If logged in, redirects
     if (session?.user) {
       redirect('/todo')
     }
@@ -31,7 +31,7 @@ export default function page() {
         </div>
 
         <div className="program-main">
-          <div className="main-top-container">
+          <div className="main-top-container-signin">
             <button className="button signin" onClick={handleSignIn}>Sign in with GitHub</button>
           </div>
         </div>
