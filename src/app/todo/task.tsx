@@ -2,19 +2,29 @@
 import React from 'react'
 
 type TaskProps = {
-    description: string;
-    removeFunc: () => void;
-    toggleFunc: () => void;
+  id: number;
+  description: string;
+  isDone: boolean;
+  removeFunc: (id: number) => void;
+  toggleFunc: (id: number, currentDone: boolean) => void;
 };
 
-export default function Task({ description, removeFunc, toggleFunc }: TaskProps) {
+export default function Task({ id, description, isDone, removeFunc, toggleFunc }: TaskProps) {
   return (
-    <li>
-        <p>{description}</p>
-        <div className='buttonContainer'>
-            <button className='removeButton' onClick={removeFunc}>Delete</button>
-            <button className='toggleButton' onClick={toggleFunc}>Finish</button>
-        </div>
+    <li data-id={id}>
+      <p style={{ textDecoration: isDone ? 'line-through' : 'none' }}>{description}</p>
+      <div className='buttonContainer'>
+        <button className='removeButton' onClick={() => removeFunc(id)}>Delete</button>
+        <button
+          className='toggleButton'
+          onClick={() => toggleFunc(id, isDone)}
+          style={{
+            backgroundImage: `url(${isDone ? '/cross.png' : '/checkmark.png'})`
+          }}
+        >
+          {isDone ? 'Unfinish' : 'Finish'}
+        </button>
+      </div>
     </li>
   )
 }

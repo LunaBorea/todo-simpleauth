@@ -27,9 +27,8 @@ export async function DELETE(req: Request){
 }
 // Updatarar en todo
 export async function PUT(req: Request){
-    // Läser in request body
     const body = await req.json()
-    console.log('body', body)
-    const data = db.prepare("UPDATE todos SET content = ? WHERE id = ?").run(body.content, body.id)
+    const data = db.prepare("UPDATE todos SET content = ?, is_done = ? WHERE id = ?")
+      .run(body.content, body.is_done ? 1 : 0, body.id)
     return Response.json(data)
 }
