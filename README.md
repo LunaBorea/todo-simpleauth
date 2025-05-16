@@ -23,7 +23,7 @@ A simple task manager built with Next.js and SQLite, featuring full CRUD functio
 ## Setup Instructions
 ### 1. Install dependencies
 
-npm install
+    npm install
 
 ### 2. Configure Better Auth
 https://www.better-auth.com/docs/installation
