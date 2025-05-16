@@ -37,8 +37,8 @@ Create a .env file with the following:
     GITHUB_CLIENT_SECRET
 
 Then run:
-npx @better-auth/cli generate
-npx @better-auth/cli migrate
+    npx @better-auth/cli generate
+    npx @better-auth/cli migrate
 
 ### 3. Create the tasks table
 Run the following SQL in your SQLite database:
