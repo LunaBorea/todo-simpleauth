@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Manager — Full-Stack CRUD App
 
-## Getting Started
+A simple task manager built with Next.js and SQLite, featuring full CRUD functionality and user authentication.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Authentication: Only logged-in users can access the app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Create: Add new tasks to your list
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Read: View tasks stored in the SQLite database
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Update: Mark tasks as completed or revert them
 
-## Learn More
+* Delete: Remove tasks permanently
 
-To learn more about Next.js, take a look at the following resources:
+* Client-server architecture using Next.js API routes (GET, POST, PUT, DELETE)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Persistent storage with better-sqlite3
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Dynamic task interface with UI state sync
 
-## Deploy on Vercel
+## Setup Instructions
+### 1. Install dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Configure Better Auth
+https://www.better-auth.com/docs/installation
+
+Create a .env file with the following:
+
+    BETTER_AUTH_SECRET
+    BETTER_AUTH_URL
+
+    GITHUB_CLIENT_ID
+    GITHUB_CLIENT_SECRET
+
+Then run:
+npx @better-auth/cli generate
+npx @better-auth/cli migrate
+
+### 3. Create the tasks table
+Run the following SQL in your SQLite database:
+
+    CREATE TABLE task (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      content TEXT NOT NULL,
+      is_done BOOLEAN NOT NULL DEFAULT 0
+    );
+
+Once complete, you're ready to start the app.
